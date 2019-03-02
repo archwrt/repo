@@ -6,7 +6,7 @@ pkgver=r411.c83a84a
 pkgrel=1
 pkgdesc='A small utility library developed for OpenWrt containing a event loop, linked lists, blobmsg, stream buffer management, [...]'
 url='http://git.openwrt.org/?p=project/libubox.git'
-arch=('i686' 'x86_64' 'armv7h')
+arch=('x86_64')
 license=('ISC BSD-3c')
 depends=('json-c' 'lua51')
 makedepends=('git' 'cmake' 'gcc' 'make' 'patch' 'pkg-config')
