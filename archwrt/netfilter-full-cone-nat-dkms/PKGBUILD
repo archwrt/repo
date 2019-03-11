@@ -1,4 +1,4 @@
-# Maintainer: Edward Pacman <micro(dot)fedora(at)gmail(dot)com>
+# Maintainer: Edward Pacman <edward@edward-p.xyz>
 
 _pkgbase=netfilter-full-cone-nat
 pkgname=netfilter-full-cone-nat-dkms

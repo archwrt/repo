@@ -1,4 +1,4 @@
-# Maintainer: Edward Pacman <micro DOT fedora AT gmail DOT com>
+# Maintainer: Edward Pacman <edward@edward-p.xyz>
 
 pkgname=iptables-fullcone-nat
 pkgver=1.8.2
