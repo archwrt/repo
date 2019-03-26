@@ -1,6 +1,7 @@
 # Maintainer: Edward Pacman <edward@edward-p.xyz>
 
-pkgbase=iptables
+_pkgrealbase=iptables
+pkgbase=iptables-fullconenat
 pkgname=(iptables-fullconenat iptables-fullconenat-nft)
 pkgver=1.8.2
 pkgrel=1
@@ -14,7 +15,7 @@ makedepends=(linux-api-headers)
 provides=('iptables')
 install=${pkgbase}.install
 backup=(etc/ethertypes etc/iptables/{ip,ip6}tables.rules)
-source=(https://www.netfilter.org/projects/iptables/files/$pkgbase-$pkgver.tar.bz2{,.sig}
+source=(https://www.netfilter.org/projects/iptables/files/$_pkgrealbase-$pkgver.tar.bz2{,.sig}
         empty.rules simple_firewall.rules empty-{filter,mangle,nat,raw,security}.rules
         {arp,eb,ip,ip6}tables.service iptables-{legacy,nft}-flush
         "libipt_FULLCONENAT.c::https://raw.githubusercontent.com/Chion82/netfilter-full-cone-nat/master/libipt_FULLCONENAT.c")
@@ -38,7 +39,7 @@ validpgpkeys=('C09DB2063F1D7034BA6152ADAB4655A126D292E4') # Netfilter Core Team
 
 prepare() {
   mkdir build
-  cd $pkgbase-$pkgver
+  cd $_pkgrealbase-$pkgver
 
   cp ../libipt_FULLCONENAT.c extensions/
   # use system one
@@ -47,7 +48,7 @@ prepare() {
 
 build() {
   cd build
-  ../$pkgbase-$pkgver/configure \
+  ../$_pkgrealbase-$pkgver/configure \
     --prefix=/usr \
     --sysconfdir=/etc \
     --sbindir=/usr/bin \
