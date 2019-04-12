@@ -4,7 +4,7 @@
 
 #pkgbase=linux               # Build stock -ARCH kernel
 pkgbase=linux-archwrt       # Build kernel with a different name
-_srcver=5.0.4-arch1
+_srcver=5.0.7-arch1
 pkgver=${_srcver//-/.}
 pkgrel=1
 arch=(x86_64)
@@ -26,9 +26,9 @@ validpgpkeys=(
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
   '8218F88849AAC522E94CF470A5E9288C4FA415FA'  # Jan Alexander Steffens (heftig)
 )
-sha256sums=('76ea28145b0d6002ceeb3454bde6871fca82399219cb721108811d63ab7df33f'
-            'df2ce998b050c707950c555f7f6ec0efcb8498fca10b4bce45f681844c8aa0ab'
-            'ab190d5e4643357c60a41ccb8f096f5c39a0eed57743b6f3f901116cb0cefa2c'
+sha256sums=('62bdb2568f1b41543ba34bccef97c0983e1b2cc08046f8912c31ee4b400d47bf'
+            'fdb355884faa86a2f9725d09657c9c32573b0f1e8bb31416823d1198bcb2f80d'
+            'aa92b60088e15220800a6c430a4874fbd914af3f988176042871d8cd82a2fd70'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             'c043f3033bb781e2688794a59f6d1f7ed49ef9b13eb77ff9a425df33a244a636'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
@@ -57,6 +57,7 @@ prepare() {
   cp ../config .config
   patch -Np1 < "../config.diff"
   make olddefconfig
+  #make menuconfig
 
   make -s kernelrelease > ../version
   msg2 "Prepared %s version %s" "$pkgbase" "$(<../version)"
