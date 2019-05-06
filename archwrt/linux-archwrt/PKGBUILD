@@ -4,7 +4,7 @@
 
 #pkgbase=linux               # Build stock -ARCH kernel
 pkgbase=linux-archwrt       # Build kernel with a different name
-_srcver=5.0.10-arch1
+_srcver=5.0.13-arch1
 pkgver=${_srcver//-/.}
 pkgrel=1
 arch=(x86_64)
@@ -12,9 +12,9 @@ url="https://git.archlinux.org/linux.git/log/?h=v$_srcver"
 license=(GPL2)
 makedepends=(xmlto kmod inetutils bc libelf git)
 options=('!strip')
-_srcname="linux-$_srcver"
+_srcname=archlinux-linux
 source=(
-  "$_srcname.tar.xz::https://git.archlinux.org/linux.git/snapshot/linux-$_srcver.tar.xz"
+  "$_srcname::git+https://git.archlinux.org/linux.git?signed#tag=v$_srcver"
   config         # the main kernel config file
   config.diff
   60-linux.hook  # pacman hook for depmod
@@ -26,9 +26,9 @@ validpgpkeys=(
   '647F28654894E3BD457199BE38DBBDC86092693E'  # Greg Kroah-Hartman
   '8218F88849AAC522E94CF470A5E9288C4FA415FA'  # Jan Alexander Steffens (heftig)
 )
-sha256sums=('4bad29420856bf0f0b6cc7ee2974307e26a5ad61c2ec3da7e79a92659d536210'
+sha256sums=('SKIP'
             '5eb7fb6aa90386735e5d8ee9528e82e12ba89875de058ffa4bf0a844ae055d58'
-            'cbeb388ed37c24e6564fb55aefccc437631611299c7bdd2a835924b91a01ecc6'
+            'add2b21c889ed352ccda73584298431bf0e8322cc5d03ca30570fa3604794ca6'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             'c043f3033bb781e2688794a59f6d1f7ed49ef9b13eb77ff9a425df33a244a636'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
@@ -57,7 +57,7 @@ prepare() {
   cp ../config .config
   patch -Np1 < "../config.diff"
   make olddefconfig
-  #make menuconfig
+  #make nconfig
 
   make -s kernelrelease > ../version
   msg2 "Prepared %s version %s" "$pkgbase" "$(<../version)"

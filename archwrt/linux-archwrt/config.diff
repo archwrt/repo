@@ -1,6 +1,10 @@
---- a/.config	2019-04-29 20:47:34.138764554 +0800
-+++ b/.config	2019-04-30 09:38:43.458999583 +0800
-@@ -4,10 +4,10 @@
+--- a/.config	2019-05-06 16:27:27.409294969 +0800
++++ b/.config	2019-05-06 17:10:57.173839283 +0800
+@@ -1,13 +1,13 @@
+ #
+ # Automatically generated file; DO NOT EDIT.
+-# Linux/x86 5.0.10-arch1 Kernel Configuration
++# Linux/x86 5.0.13-arch1 Kernel Configuration
  #
  
  #
