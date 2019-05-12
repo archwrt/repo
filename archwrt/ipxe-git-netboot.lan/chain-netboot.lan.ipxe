@@ -1,0 +1,4 @@
+#!ipxe
+
+dhcp &&
+chain --autofree http://netboot.lan/menu.ipxe

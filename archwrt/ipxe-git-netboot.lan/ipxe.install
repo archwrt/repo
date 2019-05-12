@@ -1,0 +1,9 @@
+post_install() {
+cat <<EOF
+ >
+ > Bootable binaries are installed at 
+ > /usr/lib/ipxe-netboot.lan
+ > You may want to "ln -s /usr/lib/ipxe-netboot.lan /srv/tftp"
+ > for PXE dhcp-boot
+EOF
+}

@@ -1,0 +1,91 @@
+# Maintainer: Edward Pacman <edward@edward-p.xyz>
+# Contributor: Christian Hesse <mail@eworm.de>
+
+pkgname=ipxe-git-netboot.lan
+pkgver=1.0.0.r2710.g1cdf56f7
+pkgrel=2
+pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
+arch=('any')
+url='http://www.ipxe.org/'
+license=('GPL')
+makedepends=('git')
+install=ipxe.install
+source=('git://github.com/ipxe/ipxe.git'
+	'ipxe-0001-git-version.patch::https://github.com/eworm-de/ipxe/commit/96d1e2fcdf95d82a8ca7b000ad8b30ec50b10e1d.patch'
+	'ipxe-0002-banner.patch::https://github.com/eworm-de/ipxe/commit/22f2b2c50ea3b7b24dc57af917b1dd6295ad8764.patch'
+	'chain-netboot.lan.ipxe'
+    )
+sha256sums=('SKIP'
+            'dcce3e457e6c4f3e41afc2f40c5a56e9ede8be389718a0521d5021aaf29cab8b'
+            '97de694b9e10268ca1ff357e71df431200f1a3a95a1dc0ea70737a05cdce2f69'
+            'be91764cc08f7ee5aec35d0bc9b498504b717a7a61981b90dbc446e8fc4e5d5f')
+
+pkgver() {
+	cd ipxe/
+
+	if GITTAG="$(git describe --abbrev=0 --tags 2>/dev/null)"; then
+		printf '%s.r%s.g%s' \
+			"$(sed -e "s/^${pkgname%%-git}//" -e 's/^[-_/a-zA-Z]\+//' -e 's/[-_+]/./g' <<< ${GITTAG})" \
+			"$(git rev-list --count ${GITTAG}..)" \
+			"$(git rev-parse --short HEAD)"
+	else
+		printf '0.r%s.g%s' \
+			"$(git rev-list --count master)" \
+			"$(git rev-parse --short HEAD)"
+	fi
+}
+
+prepare() {
+	cd ipxe/src/
+
+	# git version
+	patch -Np2 < "${srcdir}/ipxe-0001-git-version.patch"
+
+	# ArchLinux branding
+	patch -Np2 < "${srcdir}/ipxe-0002-banner.patch"
+
+	# change menu colors
+	sed -i "/COLOR_[A-Z]*_BG/s/COLOR_BLUE/COLOR_BLACK/" config/colour.h
+
+	# enable neighbour command
+	sed -i "/NEIGHBOUR_CMD/c #define NEIGHBOUR_CMD" config/general.h
+
+	# enable ping command
+	sed -i "/PING_CMD/c #define PING_CMD" config/general.h
+
+	# enable reboot and poweroff
+	sed -i -e "/REBOOT_CMD/c #define REBOOT_CMD" \
+		-e "/POWEROFF_CMD/c #define POWEROFF_CMD" config/general.h
+
+	# disable WEP, WPA and WPA2
+	sed -i -e "/CRYPTO_80211_/s/^#define/#undef/" \
+		-e "/IWMGMT_CMD/c #undef IWMGMT_CMD" config/general.h
+}
+
+build() {
+	cd ipxe/src/
+
+	#BIOS
+    make bin/ipxe.pxe EMBED=${srcdir}/chain-netboot.lan.ipxe
+
+	# EFI
+	make bin-i386-efi/ipxe.efi bin-x86_64-efi/ipxe.efi EMBED=${srcdir}/chain-netboot.lan.ipxe
+}
+
+package() {
+	cd ipxe/
+
+	install -D -m0644 COPYING ${pkgdir}/usr/share/licenses/ipxe/COPYING
+	install -D -m0644 COPYING.GPLv2 ${pkgdir}/usr/share/licenses/ipxe/COPYING.GPLv2
+	install -D -m0644 COPYING.UBDL ${pkgdir}/usr/share/licenses/ipxe/COPYING.UBDL
+
+	cd src/
+
+	# iPXE targets with full driver support
+	install -D -m0644 bin/ipxe.pxe ${pkgdir}/usr/lib/ipxe-netboot.lan/ipxe-netboot.lan.pxe
+
+	# iPXE EFI targets
+	install -D -m0644 bin-i386-efi/ipxe.efi ${pkgdir}/usr/lib/ipxe-netboot.lan/ipxe-netboot.lan-i386.efi
+	install -D -m0644 bin-x86_64-efi/ipxe.efi ${pkgdir}/usr/lib/ipxe-netboot.lan/ipxe-netboot.lan-x86_64.efi
+}
+
