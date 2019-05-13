@@ -3,7 +3,7 @@
 
 pkgname=ipxe-git-netboot.lan
 pkgver=1.0.0.r2710.g1cdf56f7
-pkgrel=2
+pkgrel=4
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
 url='http://www.ipxe.org/'
@@ -47,7 +47,16 @@ prepare() {
 	# change menu colors
 	sed -i "/COLOR_[A-Z]*_BG/s/COLOR_BLUE/COLOR_BLACK/" config/colour.h
 
-	# enable neighbour command
+	# enable HTTPS
+    sed -i "/DOWNLOAD_PROTO_HTTPS/c #define DOWNLOAD_PROTO_HTTPS" config/general.h 
+    
+    # enable IMAGE trust command
+    # sed -i "/IMAGE_TRUST_CMD/c #define IMAGE_TRUST_CMD" config/general.h
+
+    # enable digest command
+    sed -i "/DIGEST_CMD/c #define DIGEST_CMD" config/general.h
+
+    # enable neighbour command
 	sed -i "/NEIGHBOUR_CMD/c #define NEIGHBOUR_CMD" config/general.h
 
 	# enable ping command
