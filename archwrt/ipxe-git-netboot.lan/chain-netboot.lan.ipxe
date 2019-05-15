@@ -1,4 +1,4 @@
 #!ipxe
 
-dhcp &&
-chain --autofree http://netboot.lan/menu.ipxe
+dhcp || shell
+chain --autofree http://netboot.lan/menu.ipxe || shell
