@@ -4,7 +4,7 @@
 
 #pkgbase=linux               # Build stock -ARCH kernel
 pkgbase=linux-archwrt       # Build kernel with a different name
-_srcver=5.1.8-arch1
+_srcver=5.1.12-arch1
 pkgver=${_srcver//-/.}
 pkgrel=1
 arch=(x86_64)
@@ -16,7 +16,7 @@ _srcname=archlinux-linux
 source=(
   "$_srcname::git+https://git.archlinux.org/linux.git?signed#tag=v$_srcver"
   config         # the main kernel config file
-  #config.diff
+  config.diff
   60-linux.hook  # pacman hook for depmod
   90-linux.hook  # pacman hook for initramfs regeneration
   linux.preset   # standard config files for mkinitcpio ramdisk
@@ -28,6 +28,7 @@ validpgpkeys=(
 )
 sha256sums=('SKIP'
             '2e555646f47002c3e76e2a8405d33a64fcc8cf060ef5430881a5d144d8e3bc98'
+            '3641e73345e74bfcaf8817540d8ab35c4b1205aab7993a1fad26ce9e0510bc7c'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             'c043f3033bb781e2688794a59f6d1f7ed49ef9b13eb77ff9a425df33a244a636'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
@@ -54,9 +55,9 @@ prepare() {
 
   msg2 "Setting config..."
   cp ../config .config
-  #patch -Np1 < "../config.diff"
+  patch -Np1 < "../config.diff"
   make olddefconfig
-  make nconfig
+  #make nconfig
 
   make -s kernelrelease > ../version
   msg2 "Prepared %s version %s" "$pkgbase" "$(<../version)"
