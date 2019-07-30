@@ -1,5 +1,13 @@
---- a/.config	2019-07-11 10:42:01.818899693 +0800
-+++ b/.config	2019-07-11 10:50:17.308867198 +0800
+--- a/.config	2019-07-30 08:11:49.844731732 +0800
++++ b/.config	2019-07-30 09:00:28.637628969 +0800
+@@ -1,6 +1,6 @@
+ #
+ # Automatically generated file; DO NOT EDIT.
+-# Linux/x86 5.2.2-arch1 Kernel Configuration
++# Linux/x86 5.2.4-arch1 Kernel Configuration
+ #
+ 
+ #
 @@ -1893,9 +1893,12 @@
  CONFIG_CFG80211=m
  # CONFIG_NL80211_TESTMODE is not set
