@@ -2,7 +2,7 @@
 
 _projectname=dnsproxy
 pkgname=dnsproxy-adguard
-pkgver=0.14.0
+pkgver=0.18.0
 pkgrel=1
 pkgdesc="Simple DNS proxy with DoH, DoT, and DNSCrypt support by AdguardTeam"
 arch=('x86_64')
