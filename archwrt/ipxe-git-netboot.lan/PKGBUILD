@@ -2,8 +2,8 @@
 # Contributor: Christian Hesse <mail@eworm.de>
 
 pkgname=ipxe-git-netboot.lan
-pkgver=1.0.0.r2710.g1cdf56f7
-pkgrel=5
+pkgver=1.0.0.r2734.g41a9a5c7
+pkgrel=1
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
 url='http://www.ipxe.org/'
@@ -50,8 +50,8 @@ prepare() {
 	# enable HTTPS
     sed -i "/DOWNLOAD_PROTO_HTTPS/c #define DOWNLOAD_PROTO_HTTPS" config/general.h 
     
-    # enable IMAGE trust command
-    # sed -i "/IMAGE_TRUST_CMD/c #define IMAGE_TRUST_CMD" config/general.h
+    #enable IMAGE trust command
+    sed -i "/IMAGE_TRUST_CMD/c #define IMAGE_TRUST_CMD" config/general.h
 
     # enable digest command
     sed -i "/DIGEST_CMD/c #define DIGEST_CMD" config/general.h
