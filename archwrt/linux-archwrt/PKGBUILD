@@ -20,6 +20,7 @@ source=(
   "$_srcname::git+https://git.archlinux.org/linux.git?signed#tag=v$_srcver"
   config         # the main kernel config file
   config.diff
+  ath10k_fix_latency_for_qca988x.patch
   60-linux.hook  # pacman hook for depmod
   90-linux.hook  # pacman hook for initramfs regeneration
   linux.preset   # standard config files for mkinitcpio ramdisk
@@ -30,8 +31,9 @@ validpgpkeys=(
   '8218F88849AAC522E94CF470A5E9288C4FA415FA'  # Jan Alexander Steffens (heftig)
 )
 sha256sums=('SKIP'
-            '7d09d1d79a4ecb82502b4483cf989ede3f643e05613de45e12563dfe85d80423'
-            '3f178fcc85cd3826a65e58d7fd7656acaaa998727a0f05f751eae9e4af9e48a6'
+            'e6d2df92f3079c740ca2cafd7e8b34b5dd43832d292284c2dc133d47600d1f29'
+            'd75e3ea99c20400388ea5339c46c0533f5f4098e801bc921b5206e4e2259dc0e'
+            'd94a6bb4377c46b8eb0d9974650e3d23b7645a9df337a2cc0b4f061b124e93c5'
             '452b8d4d71e1565ca91b1bebb280693549222ef51c47ba8964e411b2d461699c'
             'c043f3033bb781e2688794a59f6d1f7ed49ef9b13eb77ff9a425df33a244a636'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
@@ -61,7 +63,7 @@ prepare() {
 
   patch -Np1 < "../config.diff"                
   make olddefconfig                                               
-  # make nconfig
+  #make nconfig
 
   make -s kernelrelease > version
   msg2 "Prepared %s version %s" "$pkgbase" "$(<version)"
