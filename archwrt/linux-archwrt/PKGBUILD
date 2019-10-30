@@ -2,7 +2,7 @@
 
 pkgbase=linux-archwrt
 pkgver=5.3.8.1
-pkgrel=1
+pkgrel=2
 _srcver=${pkgver%.*}-arch${pkgver##*.}
 url="https://git.archlinux.org/linux.git/log/?h=v$_srcver"
 arch=(x86_64)
