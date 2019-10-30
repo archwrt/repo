@@ -1,26 +1,26 @@
 diff --git a/drivers/net/wireless/ath/ath10k/core.c b/drivers/net/wireless/ath/ath10k/core.c
-index dc45d16..383d4fa 100644
+index dc45d16e8d21..383d4fa555a8 100644
 --- a/drivers/net/wireless/ath/ath10k/core.c
 +++ b/drivers/net/wireless/ath/ath10k/core.c
 @@ -2118,12 +2118,15 @@ static int ath10k_init_uart(struct ath10k *ar)
-               return ret;
-       }
+ 		return ret;
+ 	}
  
--      if (!uart_print && ar->hw_params.uart_pin_workaround) {
--              ret = ath10k_bmi_write32(ar, hi_dbg_uart_txpin,
--                                       ar->hw_params.uart_pin);
--              if (ret) {
--                      ath10k_warn(ar, "failed to set UART TX pin: %d", ret);
--                      return ret;
-+      if (!uart_print) {
-+              if (ar->hw_params.uart_pin_workaround) {
-+                      ret = ath10k_bmi_write32(ar, hi_dbg_uart_txpin,
-+                                               ar->hw_params.uart_pin);
-+                      if (ret) {
-+                              ath10k_warn(ar, "failed to set UART TX pin: %d",
-+                                          ret);
-+                              return ret;
-+                      }
-               }
+-	if (!uart_print && ar->hw_params.uart_pin_workaround) {
+-		ret = ath10k_bmi_write32(ar, hi_dbg_uart_txpin,
+-					 ar->hw_params.uart_pin);
+-		if (ret) {
+-			ath10k_warn(ar, "failed to set UART TX pin: %d", ret);
+-			return ret;
++	if (!uart_print) {
++		if (ar->hw_params.uart_pin_workaround) {
++			ret = ath10k_bmi_write32(ar, hi_dbg_uart_txpin,
++						 ar->hw_params.uart_pin);
++			if (ret) {
++				ath10k_warn(ar, "failed to set UART TX pin: %d",
++					    ret);
++				return ret;
++			}
+ 		}
  
-               return 0;
+ 		return 0;
