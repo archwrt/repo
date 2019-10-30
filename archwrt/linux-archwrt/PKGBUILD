@@ -18,6 +18,7 @@ source=(
   "$_srcname::git+https://git.archlinux.org/linux.git?signed#tag=v$_srcver"
   config         # the main kernel config file
   config.diff
+  ath10k_fix_latency_for_qca988x.patch
 )
 validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
@@ -26,7 +27,8 @@ validpgpkeys=(
 )
 sha256sums=('SKIP'
             'e6d2df92f3079c740ca2cafd7e8b34b5dd43832d292284c2dc133d47600d1f29'
-            'fe5585dd9b54a72c640d05e17869a70016e29ec4d6793daf2797acb5088bb5be')
+            'fe5585dd9b54a72c640d05e17869a70016e29ec4d6793daf2797acb5088bb5be'
+            '3a0f4e6d15a2bcf1da2535687303cd40bf222eb94418341b19725dfa693893a2')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
