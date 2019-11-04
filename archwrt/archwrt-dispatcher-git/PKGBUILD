@@ -1,0 +1,32 @@
+# Maintainer: Edward Pacman <edward@edward-p.xyz>
+
+pkgname=archwrt-dispatcher-git
+pkgver=r3.995d2fe
+pkgrel=1
+pkgdesc="Dispatcher for handling iptables and others by systemd service."
+arch=('x86_64')
+url="https://github.com/archwrt/archwrt-dispatcher"
+license=('GPL')
+depends=(ipset iptables)
+backup=(etc/archwrt/dispatcher/dispatcher.conf etc/archwrt/dispatcher/filter.rules)
+makedepends=(git)
+
+source=("${pkgname}::git+https://github.com/archwrt/archwrt-dispatcher.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/${pkgname}"
+  ( set -o pipefail
+    git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  )
+}
+
+package() {
+  # Install dkms.conf
+  cd "${pkgname}"
+  install -Dm755 archwrt-dispatcher.sh "${pkgdir}/usr/bin/archwrt-dispatcher.sh"
+  install -Dm644 dispatcher.conf "${pkgdir}/etc/archwrt/dispatcher/dispatcher.conf"
+  install -Dm644 filter.rules "${pkgdir}/etc/archwrt/dispatcher/filter.rules"
+  install -Dm644 archwrt-dispatcher@.service "${pkgdir}/usr/lib/systemd/system/archwrt-dispatcher@.service"
+}
