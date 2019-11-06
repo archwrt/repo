@@ -2,7 +2,7 @@
 
 pkgbase=linux-archwrt
 pkgver=5.3.8.1
-pkgrel=2
+pkgrel=3
 _srcver=${pkgver%.*}-arch${pkgver##*.}
 url="https://git.archlinux.org/linux.git/log/?h=v$_srcver"
 arch=(x86_64)
@@ -26,13 +26,13 @@ validpgpkeys=(
   '8218F88849AAC522E94CF470A5E9288C4FA415FA'  # Jan Alexander Steffens (heftig)
 )
 sha256sums=('SKIP'
-            'e6d2df92f3079c740ca2cafd7e8b34b5dd43832d292284c2dc133d47600d1f29'
-            'fe5585dd9b54a72c640d05e17869a70016e29ec4d6793daf2797acb5088bb5be'
+            'e749cd85d37d4d70099b0a7f54e852b039ae07c14e4ab8be299c64edae5d4ba4'
+            '06fc2861eddf6eb0b85a36d660294d00e53f6c8e7afb4ac025babf0207099ac3'
             'd7d2dadd62e7510c8520d59c603a8a8d0b2777944b6c7c1ef004f0898cb6d87e')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
-export KBUILD_BUILD_TIMESTAMP="@${SOURCE_DATE_EPOCH:-$(date +%s)}"
+export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
 
 prepare() {
   cd $_srcname
