@@ -7,7 +7,7 @@ pkgdesc="Dispatcher for handling iptables and others by systemd service."
 arch=('x86_64')
 url="https://github.com/archwrt/archwrt-dispatcher"
 license=('GPL')
-depends=(ipset iptables)
+depends=(ipset iptables-fullconenat)
 backup=(etc/archwrt/dispatcher/dispatcher.conf etc/archwrt/dispatcher/filter.rules)
 makedepends=(git)
 
