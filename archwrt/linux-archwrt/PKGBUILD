@@ -2,7 +2,7 @@
 
 pkgbase=linux-archwrt
 pkgver=5.4.2.arch1
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
 url="https://git.archlinux.org/linux.git/log/?h=$_srctag"
@@ -17,6 +17,7 @@ options=('!strip')
 _srcname=archlinux-linux
 source=(
   "$_srcname::git+https://git.archlinux.org/linux.git?signed#tag=$_srctag"
+  "00-ath10k-antenna-gain.patch"
   config         # the main kernel config file
   config.diff
 )
@@ -26,6 +27,7 @@ validpgpkeys=(
   '8218F88849AAC522E94CF470A5E9288C4FA415FA'  # Jan Alexander Steffens (heftig)
 )
 sha256sums=('SKIP'
+            '8614582437c712ac2386e320720fc8df8313cbc626a3afc4666960f19558fe8c'
             'b7f23bbc09b6c571b76f851f0389386a6f3a64f3d7b1b8509c8550228b0f4537'
             'f9ebf4a18f1c7050d314df9a83b8336eeb4fd27b1669609c4c7555fd3acb3cde')
 
