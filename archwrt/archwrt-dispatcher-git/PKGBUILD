@@ -1,13 +1,13 @@
 # Maintainer: Edward Pacman <edward@edward-p.xyz>
 
 pkgname=archwrt-dispatcher-git
-pkgver=r8.4f88d9d
+pkgver=r9.31fa436
 pkgrel=1
 pkgdesc="Dispatcher for handling iptables and others by systemd service."
 arch=('x86_64')
 url="https://github.com/archwrt/archwrt-dispatcher"
 license=('GPL')
-depends=(ipset iptables-fullconenat)
+depends=(ipset iptables)
 backup=(etc/archwrt/dispatcher/dispatcher.conf etc/archwrt/dispatcher/filter.rules)
 makedepends=(git)
 
