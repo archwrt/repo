@@ -2,21 +2,21 @@ diff --git a/drivers/net/wireless/ath/ath10k/mac.c b/drivers/net/wireless/ath/at
 index a6d21856b7e7..9417c469136e 100644
 --- a/drivers/net/wireless/ath/ath10k/mac.c
 +++ b/drivers/net/wireless/ath/ath10k/mac.c
-@@ -8239,7 +8239,7 @@ static const struct ieee80211_ops ath10k_ops = {
+@@ -8241,7 +8241,7 @@ static const struct ieee80211_ops ath10k_ops = {
  	.hw_value		= (_channel), \
  	.center_freq		= (_freq), \
  	.flags			= (_flags), \
 -	.max_antenna_gain	= 0, \
-+	.max_antenna_gain	= 6, \
++	.max_antenna_gain	= 12, \
  	.max_power		= 30, \
  }
  
-@@ -8248,7 +8248,7 @@ static const struct ieee80211_ops ath10k_ops = {
+@@ -8250,7 +8250,7 @@ static const struct ieee80211_ops ath10k_ops = {
  	.hw_value		= (_channel), \
  	.center_freq		= (_freq), \
  	.flags			= (_flags), \
 -	.max_antenna_gain	= 0, \
-+	.max_antenna_gain	= 6, \
++	.max_antenna_gain	= 12, \
  	.max_power		= 30, \
  }
  
