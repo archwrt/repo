@@ -1,13 +1,14 @@
 # Maintainer: Edward Pacman <edward@edward-p.xyz>
 
 pkgname=archwrt-dispatcher-git
-pkgver=r11.2616f89
+pkgver=r14.cdd5379
 pkgrel=1
 pkgdesc="Dispatcher for handling iptables and others by systemd service."
-arch=('x86_64')
+arch=('any')
 url="https://github.com/archwrt/archwrt-dispatcher"
 license=('GPL')
 depends=(ipset iptables)
+optdepends=('iptables-fullconenat: for FULLCONENAT')
 backup=(etc/archwrt/dispatcher/dispatcher.conf etc/archwrt/dispatcher/filter.rules)
 makedepends=(git)
 
@@ -29,4 +30,6 @@ package() {
   install -Dm644 dispatcher.conf "${pkgdir}/etc/archwrt/dispatcher/dispatcher.conf"
   install -Dm644 filter.rules "${pkgdir}/etc/archwrt/dispatcher/filter.rules"
   install -Dm644 archwrt-dispatcher@.service "${pkgdir}/usr/lib/systemd/system/archwrt-dispatcher@.service"
+  install -Dm644 archwrt-dispatcher.service "${pkgdir}/usr/lib/systemd/system/archwrt-dispatcher.service"
+
 }
