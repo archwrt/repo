@@ -1,7 +1,7 @@
 # Maintainer: Edward Pacman <edward@edward-p.xyz>
 
 pkgname=archwrt-dispatcher-git
-pkgver=r14.cdd5379
+pkgver=r15.24a4e86
 pkgrel=1
 pkgdesc="Dispatcher for handling iptables and others by systemd service."
 arch=('any')
