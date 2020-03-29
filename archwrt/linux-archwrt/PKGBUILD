@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgbase=linux-archwrt
-pkgver=5.5.5.arch1
+pkgver=5.5.13.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -27,9 +27,9 @@ validpgpkeys=(
   '8218F88849AAC522E94CF470A5E9288C4FA415FA'  # Jan Alexander Steffens (heftig)
 )
 sha256sums=('SKIP'
-            'a841aa011edf6bae0ffbe8ead8177e5056de5a6d7333bb96e16917903de4d868'
-            'b24e291652b44e0503882e15df4c377db8782a8683b32579981fda0ef92c0719'
-            'd8ce2920c52fc55ae9adba701e49a75a1606d351877cc40635516a4b1fa7de9e')
+            'cefc4c5853c1df6595380fb7259289f5850662cd7aa9600dce114e4e525114e1'
+            '7b1aa68f556da854e77675ffe8b61a46b5735be7236166d29b427b95b221f9ba'
+            'e56ddb7699cf6d82e1a44214358ca23dd353e081d447540e2047d5938ec094fb')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
