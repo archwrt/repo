@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-archwrt
-pkgver=5.7.10.arch1
+pkgver=5.8.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -19,7 +19,6 @@ source=(
   "$_srcname::git+https://git.archlinux.org/linux.git?signed#tag=$_srctag"
   config         # the main kernel config file
   sphinx-workaround.patch
-  00-ath10k-antenna-gain.patch
   config.diff
 )
 validpgpkeys=(
@@ -28,10 +27,9 @@ validpgpkeys=(
   'A2FF3A36AAA56654109064AB19802F8B0D70FC30'  # Jan Alexander Steffens (heftig)
 )
 sha256sums=('SKIP'
-            'ed60b20ee841e16038da0d145fbf3f53fac94122c4001d6cd03abe64e9e760f6'
+            '240321e752714a4b64c2aaf15a875866f24e7b66bbbe79042e0ee73d64849c38'
             '8cb21e0b3411327b627a9dd15b8eb773295a0d2782b1a41b2a8839d1b2f5778c'
-            'cfe26274114437e0cf6b70f2fbe20d73c4930cc9e34d7d441ec07bc69df2f38d'
-            '066c11cc423301a0d579c520246c546a434a644d8e1806953793974eaf1ffaf1')
+            'bc5600a0748374b3dccff6475c6755b98439141ac3ebf1a2aff8eaa13f461c8b')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
