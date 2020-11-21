@@ -1,6 +1,6 @@
 # Maintainer: Alif <alive4ever at live.com>
 pkgname=wimboot-git
-pkgver=v2.6.0.r3.91be50c
+pkgver=v2.6.0.r6.9c576c7
 pkgrel=1
 pkgdesc="iPXE kernel to boot wim images from network for both UEFI and BIOS system"
 arch=(any)
