@@ -2,7 +2,7 @@
 # Contributor: Christian Hesse <mail@eworm.de>
 
 pkgname=ipxe-git-netboot.lan
-pkgver=1.0.0.r2735.g3fe683eb
+pkgver=1.20.1.r132.gb6eb17cb
 pkgrel=1
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
@@ -11,13 +11,11 @@ license=('GPL')
 makedepends=('git')
 install=ipxe.install
 source=('git://github.com/ipxe/ipxe.git'
-	'ipxe-0001-git-version.patch::https://github.com/eworm-de/ipxe/commit/96d1e2fcdf95d82a8ca7b000ad8b30ec50b10e1d.patch'
 	'ipxe-0002-banner.patch::https://github.com/eworm-de/ipxe/commit/22f2b2c50ea3b7b24dc57af917b1dd6295ad8764.patch'
 	'chain-netboot.lan.ipxe'
     )
 sha256sums=('SKIP'
-            'dcce3e457e6c4f3e41afc2f40c5a56e9ede8be389718a0521d5021aaf29cab8b'
-            '97de694b9e10268ca1ff357e71df431200f1a3a95a1dc0ea70737a05cdce2f69'
+            'c41835f551ab83956e4e39711151175347dbd0e53f48abb9df727eb7c727c3e5'
             'baa09ac12fb4168b5b4baef4c63d1c69f95fefe3493d204312626873f794d367')
 
 pkgver() {
@@ -37,9 +35,6 @@ pkgver() {
 
 prepare() {
 	cd ipxe/src/
-
-	# git version
-	patch -Np2 < "${srcdir}/ipxe-0001-git-version.patch"
 
 	# ArchLinux branding
 	patch -Np2 < "${srcdir}/ipxe-0002-banner.patch"

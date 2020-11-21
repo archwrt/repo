@@ -1,4 +1,4 @@
-From 22f2b2c50ea3b7b24dc57af917b1dd6295ad8764 Mon Sep 17 00:00:00 2001
+From ef70ba7ba6b1bad9d873dfa48458fe16269fe48b Mon Sep 17 00:00:00 2001
 From: Christian Hesse <mail@eworm.de>
 Date: Thu, 12 Feb 2015 09:06:41 +0100
 Subject: [PATCH] banner
@@ -8,17 +8,17 @@ Subject: [PATCH] banner
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/src/usr/autoboot.c b/src/usr/autoboot.c
-index 106e0f879..d2e8b7579 100644
+index 106e0f879..209fb868d 100644
 --- a/src/usr/autoboot.c
 +++ b/src/usr/autoboot.c
-@@ -71,6 +71,7 @@ static int ( * is_autoboot_device ) ( struct net_device *netdev );
+@@ -70,6 +70,7 @@ static int ( * is_autoboot_device ) ( struct net_device *netdev );
+ 
  #define NORMAL	"\033[0m"
  #define BOLD	"\033[1m"
- #define CYAN	"\033[36m"
 +#define BLUE	"\033[34m"
+ #define CYAN	"\033[36m"
  
  /** The "scriptlet" setting */
- const struct setting scriptlet_setting __setting ( SETTING_MISC, scriptlet ) = {
 @@ -582,9 +583,13 @@ int ipxe ( struct net_device *netdev ) {
  	 * do so.
  	 *
