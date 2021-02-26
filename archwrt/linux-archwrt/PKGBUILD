@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-archwrt
-pkgver=5.10.14.arch1
+pkgver=5.11.1.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -18,6 +18,7 @@ _srcname=archlinux-linux
 source=(
   "$_srcname::git+https://git.archlinux.org/linux.git?signed#tag=$_srctag"
   config         # the main kernel config file
+  sphinx-workaround.patch  # Sphinx 3.5 broke the build again
   402-ath_regd_optional.patch
   #config.diff
 )
@@ -27,7 +28,8 @@ validpgpkeys=(
   'A2FF3A36AAA56654109064AB19802F8B0D70FC30'  # Jan Alexander Steffens (heftig)
 )
 sha256sums=('SKIP'
-            '47a5c0cbe4f75e77fe64953b516a6a9f277c1dfb812e31edf5cb25feb1b3819a'
+            '1d60aed1575ae987ac2933e3ed062435bd5fbafd701368a6396a32cab10f81ef'
+            '52fc0fcd806f34e774e36570b2a739dbdf337f7ff679b1c1139bee54d03301eb'
             '7623eb2a66f8437faee84d55a7ff92d828a8e16b53d1f9f8cb4e04189cddefbc')
 
 export KBUILD_BUILD_HOST=archlinux
@@ -55,7 +57,7 @@ prepare() {
   cp ../config .config
   #patch -Np1 < "../config.diff"
   make olddefconfig
-  make nconfig
+  #make nconfig
 
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
@@ -96,6 +98,7 @@ _package() {
 
 _package-headers() {
   pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
+  depends=(pahole)
 
   cd $_srcname
   local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
