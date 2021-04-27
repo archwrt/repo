@@ -2,7 +2,7 @@
 # Contributor: David Runge <dvzrv@archlinux.org>
 _pkgname=hostapd
 pkgname=hostapd-git
-pkgver=20210331.5f082c158
+pkgver=20210423.15b1831a2
 pkgrel=1
 pkgdesc="IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator"
 arch=('x86_64')
