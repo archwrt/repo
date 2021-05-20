@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-archwrt
-pkgver=5.11.12.arch1
+pkgver=5.12.4.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -26,7 +26,7 @@ validpgpkeys=(
   'A2FF3A36AAA56654109064AB19802F8B0D70FC30'  # Jan Alexander Steffens (heftig)
 )
 sha256sums=('SKIP'
-            'e57b71893a369a0a5da0a36de682606da34f9adc67d78f2a0fdd882a5bd7f271'
+            '6dde032690644a576fd36c4a7d3546d9cec0117dd3fb17cea6dc95e907ef9bef'
             '7623eb2a66f8437faee84d55a7ff92d828a8e16b53d1f9f8cb4e04189cddefbc')
 
 export KBUILD_BUILD_HOST=archlinux
@@ -53,7 +53,7 @@ prepare() {
   echo "Setting config..."
   cp ../config .config
   make olddefconfig
-  make nconfig
+  #make nconfig
 
   make -s kernelrelease > version
   echo "Prepared $pkgbase version $(<version)"
