@@ -2,7 +2,7 @@
 # Contributor: Christian Hesse <mail@eworm.de>
 
 pkgname=ipxe-git-netboot.lan
-pkgver=1.21.1.r123.g1192edf3
+pkgver=1.21.1.r181.ge09e1142
 pkgrel=1
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
@@ -11,11 +11,9 @@ license=('GPL')
 makedepends=('git')
 install=ipxe.install
 source=('git://github.com/ipxe/ipxe.git'
-	'ipxe-0002-banner.patch::https://github.com/eworm-de/ipxe/commit/22f2b2c50ea3b7b24dc57af917b1dd6295ad8764.patch'
 	'chain-netboot.lan.ipxe'
     )
 sha256sums=('SKIP'
-            'c41835f551ab83956e4e39711151175347dbd0e53f48abb9df727eb7c727c3e5'
             'baa09ac12fb4168b5b4baef4c63d1c69f95fefe3493d204312626873f794d367')
 
 pkgver() {
@@ -35,9 +33,6 @@ pkgver() {
 
 prepare() {
 	cd ipxe/src/
-
-	# ArchLinux branding
-	patch -Np2 < "${srcdir}/ipxe-0002-banner.patch"
 
 	# change menu colors
 	sed -i "/COLOR_[A-Z]*_BG/s/COLOR_BLUE/COLOR_BLACK/" config/colour.h
