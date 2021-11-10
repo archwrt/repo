@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-archwrt
-pkgver=5.14.15.arch1
+pkgver=5.15.1.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -27,7 +27,7 @@ validpgpkeys=(
   'C7E7849466FE2358343588377258734B41C31549'  # David Runge <dvzrv@archlinux.org>
 )
 sha256sums=('SKIP'
-            'd99003a75029fd5c6aa38060403d97150fad957546a14dfc0060df0452fd6103'
+            '8dc5994a046207b961db2a7fd3805cab8cf9c5a8f516282db9627b6378db36d0'
             '7623eb2a66f8437faee84d55a7ff92d828a8e16b53d1f9f8cb4e04189cddefbc')
 
 export KBUILD_BUILD_HOST=archlinux
