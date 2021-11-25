@@ -2,7 +2,7 @@
 # Contributor: Christian Hesse <mail@eworm.de>
 
 pkgname=ipxe-git-netboot.lan
-pkgver=1.21.1.r181.ge09e1142
+pkgver=1.21.1.r190.g236299ba
 pkgrel=1
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
@@ -65,10 +65,14 @@ build() {
 	cd ipxe/src/
 
 	#BIOS
-    make bin/ipxe.pxe EMBED=${srcdir}/chain-netboot.lan.ipxe
+  make NO_WERROR=1 \
+    EMBED=${srcdir}/chain-netboot.lan.ipxe \
+    bin/ipxe.pxe
 
 	# EFI
-	make bin-i386-efi/ipxe.efi bin-x86_64-efi/ipxe.efi EMBED=${srcdir}/chain-netboot.lan.ipxe
+	make NO_WERROR=1 \
+    EMBED=${srcdir}/chain-netboot.lan.ipxe \
+    bin-i386-efi/ipxe.efi bin-x86_64-efi/ipxe.efi 
 }
 
 package() {
