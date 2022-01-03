@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-archwrt
-pkgver=5.15.11.arch2
+pkgver=5.15.12.arch1
 pkgrel=1
 pkgdesc='Linux'
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -10,7 +10,9 @@ arch=(x86_64)
 license=(GPL2)
 makedepends=(
   bc kmod libelf pahole cpio perl tar xz
-  xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
+  xmlto 
+  #python-sphinx python-sphinx_rtd_theme
+  graphviz imagemagick
   git
 )
 options=('!strip')
@@ -27,7 +29,7 @@ validpgpkeys=(
   'C7E7849466FE2358343588377258734B41C31549'  # David Runge <dvzrv@archlinux.org>
 )
 sha256sums=('SKIP'
-            '6000b247aac5620ba08ec862353063f5f8806a33c4c8f55263843c8f47027e63'
+            '9b499e8aaeff2cda878c424f75bcf6afa1c08f85ad55d97d1c27b2dfe5e7d9d4'
             '7623eb2a66f8437faee84d55a7ff92d828a8e16b53d1f9f8cb4e04189cddefbc')
 
 export KBUILD_BUILD_HOST=archlinux
@@ -63,7 +65,7 @@ prepare() {
 build() {
   cd $_srcname
   make all
-  make htmldocs
+  # make htmldocs
 }
 
 _package() {
