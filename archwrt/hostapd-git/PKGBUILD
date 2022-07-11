@@ -2,7 +2,7 @@
 # Contributor: David Runge <dvzrv@archlinux.org>
 _pkgname=hostapd
 pkgname=hostapd-git
-pkgver=20220623.09a281e52
+pkgver=20220707.a0054fe7c
 pkgrel=1
 pkgdesc="IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator"
 arch=('x86_64')
@@ -16,7 +16,7 @@ source=("${_pkgname}::git+https://w1.fi/hostap.git"
         hostapd.service
         hostapd-noscan.patch)
 sha256sums=('SKIP'
-            '1fc3f52f732a02e47da44e416c112e108768e5feafbef502075260f15c994248'
+            'd0bbbfec38e338938910b09704ab986f3615b15ed2e0832d368ce3e9b94e3c51'
             '989bc6855f44c0b360e3d4cd4a146c35b7c12f8a0ced627b4b033f58edcade8e'
             '9258e1c391dd9a68ef5640a06901a1353ed8abf5c0ed5a83e45342fc09e50d4b')
 validpgpkeys=('EC4AA0A991A5F2464582D52D2B6EF432EFC895FA') # Jouni Malinen
