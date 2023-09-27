@@ -2,7 +2,7 @@
 # Contributor: Christian Hesse <mail@eworm.de>
 
 pkgname=ipxe-git-netboot.lan
-pkgver=1.21.1.r473.gc1834f32
+pkgver=1.21.1.r483.g8b14652e
 pkgrel=1
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
@@ -11,10 +11,20 @@ license=('GPL')
 makedepends=('git')
 install=ipxe.install
 source=('git+https://github.com/ipxe/ipxe.git'
-	'chain-netboot.lan.ipxe'
-    )
+        'chain-netboot.lan.ipxe'
+        'colour.h'
+        'console.h'
+        'crypto.h'
+        'general.h'
+        'general.h.efi'
+      )
 sha256sums=('SKIP'
-            'baa09ac12fb4168b5b4baef4c63d1c69f95fefe3493d204312626873f794d367')
+            'baa09ac12fb4168b5b4baef4c63d1c69f95fefe3493d204312626873f794d367'
+            '20b745aece9cbe80f0ada457fed103bcca8f8c797113f22ec2a01b23929195f7'
+            '841ab16a618e9606769be3ad4df160ac35124f89372b6293f6577b79cd9157a8'
+            '1c7ae7821bdfffd6b5a31e5c96e441f0b21add2172de441a77d9eba49ef6dcfa'
+            '115094a1d6426707316f3eb5e0ec67c21616e281dfa7d2056886452824db524e'
+            'cdd0e34fc2929443a54efa06b16d72b981601cc63ce297ad48d6a1901dff9bc6')
 
 pkgver() {
 	cd ipxe/
@@ -33,46 +43,24 @@ pkgver() {
 
 prepare() {
 	cd ipxe/src/
-
-	# change menu colors
-	sed -i "/COLOR_[A-Z]*_BG/s/COLOR_BLUE/COLOR_BLACK/" config/colour.h
-
-	# enable HTTPS
-    sed -i "/DOWNLOAD_PROTO_HTTPS/c #define DOWNLOAD_PROTO_HTTPS" config/general.h 
-    
-    #enable IMAGE trust command
-    sed -i "/IMAGE_TRUST_CMD/c #define IMAGE_TRUST_CMD" config/general.h
-
-    # enable digest command
-    sed -i "/DIGEST_CMD/c #define DIGEST_CMD" config/general.h
-
-    # enable neighbour command
-	sed -i "/NEIGHBOUR_CMD/c #define NEIGHBOUR_CMD" config/general.h
-
-	# enable ping command
-	sed -i "/PING_CMD/c #define PING_CMD" config/general.h
-
-	# enable reboot and poweroff
-	sed -i -e "/REBOOT_CMD/c #define REBOOT_CMD" \
-		-e "/POWEROFF_CMD/c #define POWEROFF_CMD" config/general.h
-
-	# disable WEP, WPA and WPA2
-	sed -i -e "/CRYPTO_80211_/s/^#define/#undef/" \
-		-e "/IWMGMT_CMD/c #undef IWMGMT_CMD" config/general.h
+  cp ${srcdir}/{colour.h,console.h,crypto.h} config/local/
 }
 
 build() {
 	cd ipxe/src/
 
 	#BIOS
+  cp ${srcdir}/general.h config/local/
   make NO_WERROR=1 \
     EMBED=${srcdir}/chain-netboot.lan.ipxe \
     bin/ipxe.pxe
 
 	# EFI
+  rm config/local/general.h
+  cp ${srcdir}/general.h.efi config/local/
 	make NO_WERROR=1 \
     EMBED=${srcdir}/chain-netboot.lan.ipxe \
-    bin-i386-efi/ipxe.efi bin-x86_64-efi/ipxe.efi 
+    bin-x86_64-efi/ipxe.efi
 }
 
 package() {
@@ -88,7 +76,6 @@ package() {
 	install -D -m0644 bin/ipxe.pxe ${pkgdir}/usr/lib/ipxe-netboot.lan/ipxe-netboot.lan.pxe
 
 	# iPXE EFI targets
-	install -D -m0644 bin-i386-efi/ipxe.efi ${pkgdir}/usr/lib/ipxe-netboot.lan/ipxe-netboot.lan-i386.efi
 	install -D -m0644 bin-x86_64-efi/ipxe.efi ${pkgdir}/usr/lib/ipxe-netboot.lan/ipxe-netboot.lan-x86_64.efi
 }
 
