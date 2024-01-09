@@ -2,7 +2,7 @@
 # Contributor: Christian Hesse <mail@eworm.de>
 
 pkgname=ipxe-git-netboot.lan
-pkgver=1.21.1.r483.g8b14652e
+pkgver=1.21.1.r484.gff0f8604
 pkgrel=1
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
