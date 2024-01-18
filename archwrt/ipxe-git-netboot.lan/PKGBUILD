@@ -2,12 +2,12 @@
 # Contributor: Christian Hesse <mail@eworm.de>
 
 pkgname=ipxe-git-netboot.lan
-pkgver=1.21.1.r484.gff0f8604
+pkgver=1.21.1.r524.g26d3ef062
 pkgrel=1
 pkgdesc='iPXE open source boot firmware - http://netboot.lan/menu.ipxe'
 arch=('any')
 url='http://www.ipxe.org/'
-license=('GPL')
+license=('GPL-2.0-or-later')
 makedepends=('git')
 install=ipxe.install
 source=('git+https://github.com/ipxe/ipxe.git'

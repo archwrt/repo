@@ -2,12 +2,12 @@
 # Contributor: David Runge <dvzrv@archlinux.org>
 _pkgname=hostapd
 pkgname=hostapd-git
-pkgver=20240104.064c233d1
+pkgver=20240114.2a6107118
 pkgrel=1
 pkgdesc="IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator"
 arch=('x86_64')
 url="https://w1.fi/hostapd/"
-license=('BSD')
+license=('BSD-3-Clause AND BSD-2-Clause')
 depends=('glibc' 'libnl' 'openssl' 'sqlite')
 makedepends=('git')
 backup=("etc/${_pkgname}/${_pkgname}."{accept,conf,deny,eap_user,radius_clients,vlan,wpa_psk})
