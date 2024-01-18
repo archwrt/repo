@@ -2,7 +2,7 @@
 
 pkgname=archwrt-dispatcher-git
 pkgver=r21.c81e83e
-pkgrel=1
+pkgrel=2
 pkgdesc="Dispatcher for handling iptables and others by systemd service."
 arch=('any')
 url="https://github.com/archwrt/archwrt-dispatcher"
